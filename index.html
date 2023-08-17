@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>cadastro de Livros</h1>
+    <input id="nomeLivro" placeholder="Nome" type="text">
+    <input id="autorLivro" placeholder="Autor" type="text">
+    <input id="anoLivro" placeholder="Ano" type="text">
+    <button onclick="adicionar()" >Adicionar Livro</button>
+    <button onclick="mostrarLivros()">Mostrar</button>
+    <button onclick="limparBiblioteca()">Limpar Biblioteca</button>
+
+    <h2 id="cadastre">Cadastre um livro</h2>
+
+
+    <div id="biblioteca-container">
+        <!-- Os livros serão adicionados aqui dinamicamente -->
+    </div>
+
+
+    <script src="script.js"></script>
+
+    
+
+</body>
+</html>
