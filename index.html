@@ -4,22 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>cadastro de Livros</h1>
-    <input id="nomeLivro" placeholder="Nome" type="text">
-    <input id="autorLivro" placeholder="Autor" type="text">
-    <input id="anoLivro" placeholder="Ano" type="text">
-    <button onclick="adicionar()" >Adicionar Livro</button>
-    <button onclick="mostrarLivros()">Mostrar</button>
-    <button onclick="limparBiblioteca()">Limpar Biblioteca</button>
 
-    <h2 id="cadastre">Cadastre um livro</h2>
-
-
-    <div id="biblioteca-container">
-        <!-- Os livros serão adicionados aqui dinamicamente -->
+    <div id="carrosselDiv" class="container">
+        <div id="carrossel">
+            <img src="" alt="imagem do carrossel" id="imagemCarrossel">
+        </div>
+        <div class="botoes-carrossel">
+            <button class="button" id="anterior">Anterior</button>
+            <button class="button" id="proximo">Próximo</button>
+        </div>
+        <h2 class="tituloLivro" id="carrosselTitulo">Ainda não existem livros cadastrados</h2>
+        <h3 class="subTitulo" id="autorCarrossel"></h3>
+        <h3 class="subTitulo" id="anoCarrossel"></h3>
     </div>
+
+    <section>
+        <h1 class="titulo">Cadastro de livros</h1>
+        <div class="inputs">
+            <div class="form__group">
+                <input id="nomeLivro" type="text" class="form__field w-100" placeholder="Nome">
+                <label for="name" class="form__label"> Nome </label>
+            </div>
+            <div class="form__group">
+                <input id="autorLivro" type="text" class="form__field w-100" placeholder="Autor">
+                <label for="name" class="form__label"> Autor </label>
+            </div>
+            <div class="form__group">
+                <input id="anoLivro" type="number" class="form__field w-100" placeholder="Ano">
+                <label for="name" class="form__label"> Ano </label>
+            </div>
+            <div class="form__group">
+                <input id="urlLivro" type="url" class="form__field w-100" placeholder="URL da capa">
+                <label for="name" class="form__label"> URL da capa </label>
+            </div>
+        </div>
+        <div class="botoes">
+            <button onclick="adicionar()" class="button">
+                Adicionar Livros
+            </button>
+            <button class="button" onclick="mostrarLivros()">Mostrar</button>
+            <button class="button" onclick="limparBiblioteca()">Limpar Biblioteca</button>
+        </div>
+        <h2 id="cadastre">Cadastre um livro</h2>
+        <div id="biblioteca-container">
+        </div>
+    </section>
 
 
     <script src="script.js"></script>

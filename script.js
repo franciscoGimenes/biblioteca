@@ -1,14 +1,4 @@
 
-function adicionar(){
-    let nome = document.getElementById('nomeLivro').value
-    let autor = document.getElementById('autorLivro').value
-    let ano = document.getElementById('anoLivro').value
-    cadastro(nome, autor, ano)
-    console.log(biblioteca)
-    if (0 < biblioteca.length) {
-        cadastre.innerHTML = `Existem ${biblioteca.length} Livros cadastrados`
-    }
-}
 function cadastro(nome, autor, ano){
     var livros = {
         titulo: nome,
@@ -17,43 +7,105 @@ function cadastro(nome, autor, ano){
     }
     biblioteca.push(livros)
 }
-let biblioteca = [];
+function adicionar(){
+    let nome = document.getElementById('nomeLivro').value
+    let autor = document.getElementById('autorLivro').value
+    let ano = document.getElementById('anoLivro').value
+    let url = document.getElementById('urlLivro').value
+    cadastro(nome, autor, ano)
+    imagens.push(url)
+    if (0 < biblioteca.length) {
+        cadastre.innerHTML = `Existem ${biblioteca.length} Livros cadastrados`
+    }
+    // console.log(imagensDisponiveis.length)
+    carregar()
+    console.log(biblioteca.length)
+    console.log(tamanhoBiblioteca)  
+}
+
+var biblioteca = [];
 let cadastre = document.querySelector("#cadastre")
-// Selecionar o elemento container onde os livros serão adicionados
+
 var container = document.getElementById("biblioteca-container");
 
 function mostrarLivros(){   
-    container.innerHTML = "";    // Limpar o conteúdo atual do container
+    container.innerHTML = "";  
     for (var i = 0; i < biblioteca.length; i++) {
     var livro = biblioteca[i];
 
-    // Criar um elemento div para cada livro
+
     var livroDiv = document.createElement("div");
-    livroDiv.classList.add("livro"); // opcional, para estilização
+    livroDiv.classList.add("livro");
 
-    // Construir o conteúdo HTML para o livro
-    var livroHTML = "<h2>" + livro.titulo + "</h2>";
-    livroHTML += "<p>Autor: " + livro.autor + "</p>";
-    livroHTML += "<p>Ano: " + livro.ano + "</p>";
+    var livroHTML = '<h2 class="tituloLivro" >' + livro.titulo + '</h2>';
+    livroHTML += '<p class="subTitulo">Autor: ' + livro.autor + '</p>';
+    livroHTML += '<p class="subTitulo">Ano: ' + livro.ano + '</p>';
 
-    // Definir o conteúdo HTML do elemento div do livro
+
     livroDiv.innerHTML = livroHTML;
 
-    // Adicionar o elemento div do livro ao container
     container.appendChild(livroDiv);
 
 
 }
 }
-// Iterar através da matriz biblioteca
+var imgIndice = 0
+const prevButton = document.getElementById('anterior')
+const nextButton = document.getElementById('proximo')
 
+var IMG = document.getElementById('imagemCarrossel')
 
+var imagens = []
+
+// var tamanhoBiblioteca = biblioteca.length
+// var imagensDisponiveis = imagens.slice(0, tamanhoBiblioteca)
+let autorCarrossel = document.getElementById("autorCarrossel")
+let anoCarrossel = document.getElementById("anoCarrossel")
+let tituloCarrossel = document.getElementById('carrosselTitulo')
 
 function limparBiblioteca(){
     biblioteca = []
     container.innerHTML = "";
-    cadastre.innerHTML = "Não existem livros cadastrados"
+    cadastre.innerHTML = "Cadastre um livro"
+    imagens.length = 0
+    tituloCarrossel.textContent = "Ainda não existem livros cadastrados"
+    autorCarrossel.textContent = ""
+    anoCarrossel.textContent = ""
+    imgIndice = 0
+    console.log('funcionando')
+    carregar()
 }
 
+//começara trabalhar no carrossel de imagem
+function carregar(){    
+    IMG.src = imagens[imgIndice]
+    tituloCarrossel.textContent = biblioteca[imgIndice].titulo
+    autorCarrossel.textContent = biblioteca[imgIndice].autor
+    anoCarrossel.textContent = biblioteca[imgIndice].ano
+}
 
-
+prevButton.addEventListener('click', () => {
+    var limite = (imagens.length)
+    if (imgIndice > 0){
+        --imgIndice
+        carregar()
+    }
+    else {
+        imgIndice = limite - 1
+        carregar()
+    }
+    
+})
+nextButton.addEventListener('click', () => {
+    var limite = (imagens.length)
+    if (imgIndice < limite - 1){
+        ++imgIndice
+        carregar()
+    }
+    else {
+        imgIndice = 0 
+        carregar()
+    }
+    console.log(imgIndice)
+})
+carregar()
